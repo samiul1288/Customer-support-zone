@@ -9,9 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <TicketsProvider>
+    
       <App />
-      <ToastContainer position="bottom-right" />
-    </TicketsProvider>
+      
   </React.StrictMode>
 );

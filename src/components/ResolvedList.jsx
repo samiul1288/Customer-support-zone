@@ -7,9 +7,11 @@ export default function ResolvedList() {
   return (
     <ul className="clean-list">
       {resolved.length === 0 && <li className="empty">No resolved task yet</li>}
+
       {resolved.map((id) => {
         const t = get(id);
         if (!t) return null;
+
         return (
           <li key={id} className="row">
             <div className="dot" />

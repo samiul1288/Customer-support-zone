@@ -1,24 +1,38 @@
-// src/components/Banner.jsx
 import { useTickets } from "../context/TicketsContext.jsx";
 
 export default function Banner() {
   const { stats } = useTickets();
 
+  const handleClickProgress = () => {
+    console.log("In-Progress clicked");
+  };
+
+  const handleClickResolved = () => {
+    console.log("Resolved clicked");
+  };
+
   return (
-    <section className="banner">
+    <section className="banner" id="home">
       <div className="container">
-        <div className="stats">
-          <div className="stat stat--progress">
-            <span className="label">In-Progress</span>
-            <span className="value">{stats.inProgress}</span>
-          </div>
+        <div className="banner-inner">
+          <button
+            type="button"
+            className="banner-left"
+            onClick={handleClickProgress}
+          >
+            <span className="banner-label">In-Progress</span>
+            <span className="banner-value">{stats.inProgress}</span>
+          </button>
 
-          <div className="stat stat--resolved">
-            <span className="label">Resolved</span>
-            <span className="value">{stats.resolved}</span>
-          </div>
+          <button
+            type="button"
+            className="banner-right"
+            onClick={handleClickResolved}
+          >
+            <span className="banner-label">Resolved</span>
+            <span className="banner-value">{stats.resolved}</span>
+          </button>
         </div>
-
         <div className="banner-hover-zone" />
       </div>
     </section>

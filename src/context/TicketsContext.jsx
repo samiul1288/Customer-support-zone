@@ -1,60 +1,81 @@
-import { createContext, useContext, useMemo, useState } from "react";
-import { seedTickets as initial } from "../data/tickets.jsx";
+import { createContext, useContext, useState, useMemo } from "react";
 import { toast } from "react-toastify";
+import initialTickets from "../data/tickets.jsx";
 
-const Ctx = createContext(null);
+const TicketsContext = createContext();
 
 export function TicketsProvider({ children }) {
-  const [tickets, setTickets] = useState(initial);
-  const [inProgress, setInProgress] = useState([]);
-  const [resolved, setResolved] = useState([]);
-  
-
-  const stats = useMemo(
-    () => ({ inProgress: inProgress.length, resolved: resolved.length }),
-    [inProgress, resolved]
-  );
-
-  const visibleTickets = useMemo(
-    () => tickets.filter((t) => !resolved.includes(t.id)),
-    [tickets, resolved]
-  );
+  const [tickets, setTickets] = useState(initialTickets);
+  const [inProgress, setInProgress] = useState([]); // ids
+  const [resolved, setResolved] = useState([]); // ids
 
   const addToInProgress = (id) => {
-    if (resolved.includes(id)) return;
-    if (inProgress.includes(id)) {
-      toast.info("Already in progress");
-      return;
-    }
-    setInProgress((prev) => [...prev, id]);
-    toast.success("Moved to In Progress");
+    setInProgress((prev) => {
+      if (prev.includes(id) || resolved.includes(id)) {
+        toast.info("This ticket is already being tracked.", {
+          icon: "ℹ️",
+          toastId: `tracked-${id}`,
+        });
+        return prev;
+      }
+
+      toast.info("Ticket added to Task Status.", {
+        icon: "📝",
+        toastId: `added-${id}`,
+      });
+
+      return [...prev, id];
+    });
   };
 
   const completeTicket = (id) => {
-    if (resolved.includes(id)) return;
-    setResolved((prev) => [...prev, id]);
-    setInProgress((prev) => prev.filter((x) => x !== id));
+    setInProgress((prev) => prev.filter((tid) => tid !== id));
+
+    setResolved((prev) => {
+      if (!prev.includes(id)) {
+        toast.success("Ticket marked as resolved.", {
+          toastId: `resolved-${id}`,
+          icon: "✅",
+        });
+        return [...prev, id];
+      }
+      return prev;
+    });
+
     setTickets((prev) => prev.filter((t) => t.id !== id));
-    toast.success("Marked as Resolved");
   };
 
   const createNewTicket = () => {
-    const next = tickets.length + resolved.length + 1001;
-    const id = `T-${next}`;
-    const customers = ["Aster Corp", "BluePeak LLC", "Nimbus Co", "Horizon Foods", "Zephyr AI"];
-    const priorities = ["low", "medium", "high"];
-    const t = {
-      id,
-      title: "New support request",
-      description: "Created via New Ticket button.",
-      customer: customers[Math.floor(Math.random() * customers.length)],
-      priority: priorities[Math.floor(Math.random() * priorities.length)],
-      status: "new",
-      createdAt: new Date().toISOString(),
+    const nextId =
+      tickets.length > 0 ? Math.max(...tickets.map((t) => t.id)) + 1 : 1001;
+
+    const ticket = {
+      id: nextId,
+      title: "New Support Ticket",
+      description: "This is a placeholder ticket created from the navbar.",
+      customer: "New Customer",
+      priority: "low",
+      status: "open",
+      createdAt: new Date().toISOString().slice(0, 10),
     };
-    setTickets((prev) => [t, ...prev]);
-    toast("New ticket created");
+
+    setTickets((prev) => [ticket, ...prev]);
+
+    toast("New ticket created.", {
+      icon: "➕",
+      toastId: `new-ticket-${nextId}`,
+    });
   };
+
+  const stats = useMemo(
+    () => ({
+      inProgress: inProgress.length,
+      resolved: resolved.length,
+    }),
+    [inProgress.length, resolved.length]
+  );
+
+  const visibleTickets = tickets;
 
   const value = {
     tickets,
@@ -67,14 +88,13 @@ export function TicketsProvider({ children }) {
     createNewTicket,
   };
 
-  return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
+  return (
+    <TicketsContext.Provider value={value}>{children}</TicketsContext.Provider>
+  );
 }
 
-// ডিফেন্সিভ হুক: Provider ছাড়া ব্যবহার করলে হেল্পফুল এরর দেবে
-export const useTickets = () => {
-  const ctx = useContext(Ctx);
-  if (!ctx) {
-    throw new Error("useTickets must be used within <TicketsProvider>");
-  }
+export function useTickets() {
+  const ctx = useContext(TicketsContext);
+  if (!ctx) throw new Error("useTickets must be used within TicketsProvider");
   return ctx;
-};
+}

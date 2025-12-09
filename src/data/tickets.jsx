@@ -1,17 +1,105 @@
-const now = new Date();
-const daysAgo = (d) => new Date(now.getTime() - d * 24 * 60 * 60 * 1000).toISOString();
 
-export const seedTickets = [
-  { id: "T-1001", title: "Login fails on Safari", description: "User cannot log in using Safari 17 on macOS.", customer: "Aster Corp", priority: "high", status: "new", createdAt: daysAgo(1) },
-  { id: "T-1002", title: "Billing double charge", description: "Duplicate invoice for Sept.", customer: "BluePeak LLC", priority: "high", status: "new", createdAt: daysAgo(2) },
-  { id: "T-1003", title: "Slow dashboard load", description: "Dashboard takes ~12s.", customer: "Nimbus Co", priority: "medium", status: "new", createdAt: daysAgo(3) },
-  { id: "T-1004", title: "Webhook 500 errors", description: "order.created failing.", customer: "Horizon Foods", priority: "high", status: "new", createdAt: daysAgo(5) },
-  { id: "T-1005", title: "Can’t export CSV", description: "Export disabled >5k rows.", customer: "Zephyr AI", priority: "medium", status: "new", createdAt: daysAgo(6) },
-  { id: "T-1006", title: "2FA reset request", description: "Lost authenticator app.", customer: "Orchid Labs", priority: "low", status: "new", createdAt: daysAgo(8) },
-  { id: "T-1007", title: "Email notifications delayed", description: "PW reset 20m late.", customer: "PolarTech", priority: "medium", status: "new", createdAt: daysAgo(9) },
-  { id: "T-1008", title: "Mobile layout broken", description: "Header overlaps.", customer: "Sunrise Health", priority: "high", status: "new", createdAt: daysAgo(10) },
-  { id: "T-1009", title: "SAML mapping issue", description: "Groups not syncing.", customer: "Delta Edu", priority: "medium", status: "new", createdAt: daysAgo(12) },
-  { id: "T-1010", title: "Timezone mismatch", description: "Reports show UTC.", customer: "Quasar Retail", priority: "low", status: "new", createdAt: daysAgo(13) },
-  { id: "T-1011", title: "Broken link in footer", description: "Careers 404.", customer: "Aurora Bank", priority: "low", status: "new", createdAt: daysAgo(14) },
-  { id: "T-1012", title: "Import stuck", description: "Large import hangs.", customer: "Cobalt HR", priority: "high", status: "new", createdAt: daysAgo(15) },
+const tickets = [
+  {
+    id: 1001,
+    title: "Login Issues - Can't Access Account",
+    description:
+      "Customer is unable to log in to their account. They've tried resetting their password multiple times but still...",
+    customer: "John Smith",
+    priority: "high",
+    status: "open",
+    createdAt: "2024-01-15",
+  },
+  {
+    id: 1002,
+    title: "Payment Failed - Card Declined",
+    description:
+      "Customer attempted to pay using Visa ending 1234 but the payment keeps failing despite sufficient balance.",
+    customer: "Sarah Johnson",
+    priority: "high",
+    status: "open",
+    createdAt: "2024-01-16",
+  },
+  {
+    id: 1003,
+    title: "Incorrect Billing Address",
+    description:
+      "Customer’s billing address shows a different city. They updated it but it still displays the old one.",
+    customer: "Michael Brown",
+    priority: "medium",
+    status: "open",
+    createdAt: "2024-01-17",
+  },
+  {
+    id: 1004,
+    title: "Unable to Download Invoice",
+    description:
+      "Customer cannot download their January invoice from the billing section. The download button is...",
+    customer: "Emily Davis",
+    priority: "low",
+    status: "in-progress",
+    createdAt: "2024-01-18",
+  },
+  {
+    id: 1005,
+    title: "App Crash on Launch",
+    description:
+      "Customer reports that the mobile app crashes immediately upon opening on Android 13.",
+    customer: "David Wilson",
+    priority: "high",
+    status: "open",
+    createdAt: "2024-01-19",
+  },
+  {
+    id: 1006,
+    title: "Refund Not Processed",
+    description:
+      "Customer requested a refund two weeks ago but has not received the amount yet.",
+    customer: "Sophia Taylor",
+    priority: "medium",
+    status: "in-progress",
+    createdAt: "2024-01-20",
+  },
+  {
+    id: 1007,
+    title: "Two-Factor Authentication Issue",
+    description:
+      "Customer is not receiving 2FA codes on their registered phone number.",
+    customer: "James Anderson",
+    priority: "high",
+    status: "open",
+    createdAt: "2024-01-21",
+  },
+  {
+    id: 1008,
+    title: "Unable to Update Profile Picture",
+    description:
+      "Customer tries to upload a new profile picture but gets 'Upload failed' error.",
+    customer: "Olivia Martinez",
+    priority: "low",
+    status: "open",
+    createdAt: "2024-01-22",
+  },
+  {
+    id: 1009,
+    title: "Subscription Auto-Renewal",
+    description:
+      "Customer wants to enable auto-renewal for their subscription but the toggle is disabled.",
+    customer: "Liam Thomas",
+    priority: "medium",
+    status: "in-progress",
+    createdAt: "2024-01-23",
+  },
+  {
+    id: 1010,
+    title: "Missing Order Confirmation Email",
+    description:
+      "Customer placed an order but didn't receive a confirmation email even though payment succeeded.",
+    customer: "Isabella Garcia",
+    priority: "medium",
+    status: "open",
+    createdAt: "2024-01-24",
+  },
 ];
+
+export default tickets;

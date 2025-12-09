@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+🎫 Ticket Management
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Create new support tickets
 
-## Available Scripts
+Add ticket to Task Status with one click
 
-In the project directory, you can run:
+Mark tickets as Resolved
 
-### `npm start`
+Automatic filtering (resolved tickets are removed from active list)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+📊 Dashboard Stats
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+In-Progress count
 
-### `npm test`
+Resolved count
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Beautiful gradient banner with vector background from Figma design
 
-### `npm run build`
+🖼 UI Design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Pixel-perfect Figma-to-React conversion
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Rounded cards, badges, priority chips
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Status chips with colored dots
 
-### `npm run eject`
+Clean typography & spacing
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Responsive layout
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+🔔 Notifications
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Using react-toastify
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Prevent duplicate alerts
 
-## Learn More
+Custom icons (📝 ℹ️ ✅)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Consistent toastId to prevent multiple toasts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+🧩 Code Structure
 
-### Code Splitting
+Context API for global state
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Reusable components (Navbar, Banner, TicketCard, Footer)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Clean, organized stylesheet
